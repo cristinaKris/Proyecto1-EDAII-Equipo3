@@ -1,0 +1,359 @@
+\documentclass{report}
+\usepackage[spanish, activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[opciones]{hyperref}
+\usepackage{xcolor}
+
+
+\title{PROYECTO 1 - ÁRBOLES BINARIOS}
+\author{Castillo Soto Jacqueline \\ Figueroa Ruiz Carolina \\ Isidro Castro Karen Cristina \\ \\ Estructura de Datos y Algoritmos II}
+\date{Diciembre 4 2022}
+
+\begin{document}
+
+
+\maketitle
+
+\section{OBJETIVO}
+Que el alumno implemente aplicaciones relacionadas con los árboles binarios y que desarrolle sus habilidades de trabajo en equipo y programación orientada a objetos.
+\section{INTRODUCCIÓN}
+Una exploración algo amplia en el campo de la ciencia de la computación nos lleva a
+situaciones en que las representaciones lineales son inadecuadas, tanto en sentido conceptual como práctico. Y es aquí donde se nos presentan otro tipo de estructuras NO lineas, que en realidad presentan muchos beneficios y posibles aplicaciones, entre estas estructuras de datos no lineales tenemos a los \textbf{Árboles}.\\\\
+Un árbol impone una estructura jerárquica sobre una colección de objetos. Ejemplos claros
+de utilización de árboles se presentan tanto dentro como fuera del área de computación (índices de libros, árboles genealógicos, etc.); en Informática constituyen una de las estructuras más utilizadas, con aplicaciones que van desde los árboles sintácticos utilizados para la representación y/o interpretación de términos de un lenguaje o expresiones aritméticas, pasando por los arboles de activación de procedimientos recursivos, hasta la representación de datos que se desea mantener ordenados con un tiempo de acceso relativamente bajo. En general, se usarán árboles siempre que se quiera representar información jerarquizada, cuando esta converja en un solo punto.\\\\
+Intuitivamente, podemos visualizar árboles como una forma de organizar información de
+forma jerárquica, con un único punto de entrada y una serie de caminos que van abriéndose en cada punto hacia sus sucesores. Ahora, a pesar de que los árboles cumplen con una estructura general, existen diferentes tipos de ellos, con funcionamientos y aplicaciones distintas, entre ellos (y uno de los MÁS utilizados) están los \textbf{Árboles Binarios}\\\\
+Un \textbf{Árbol Binario} es un tipo de árbol que se caracteriza por que TODOS sus nodos tienen dos nodos hijos, pudiendo ser nulos. Y, aunque esto ya limita un poco más a la estructura de un árbol en general, también tenemos clasificaciones dentro de los árboles binarios. En este trabajo vamos a hablar sobre 3:
+\begin{itemize}
+    \item Árbol AVL\\De manera sencilla, un árbol AVL (Adelson–Velskii y Landis) es un árbol binario de búsqueda  que satisface la condición de estar balanceado. Además de que, por ser un Árbol Binario de Búsqueda respeta la propiedad de orden en todos sus nodos, es decir, todas las claves en su subárbol izquierdo son menores que la clave del nodo y todas las claves en el subárbol derecho son mayores. Y su propiedad de balanceo dice que para cada nodo del árbol, la diferencia de altura entre el subárbol izquierdo y el subárbol derecho es a lo sumo 1.
+    \item Heap\\Un heap o montículo es un árbol binario completo, y además parcialmente ordenado. Se dice que es parcialmente ordenado porque tiene todas y cada una de sus ramas, consideradas como listas, siguiendo un orden específico, ya sea de forma creciente o decreciente. Si hablamos de un heap decreciente, podemos definirlo como un árbol binario completo, tal que el valor de su raíz es mayor o igual que las raíces de sus hijos, siendo también heaps ambos hijos.
+    \item Árbol de Expresión Aritmética.\\En un árbol binario de expresiones aritméticas cada nodo contiene la información de un elemento de la expresión (un operando o un operador) y la propia estructura del árbol viene determinada por la forma de la expresión aritmética.
+\end{itemize}
+Entonces, un árbol binario es una estructura de datos muy importantes y muy útiles cuando se trata de hacer modelos de procesos donde se requiere tomar decisiones en uno de dos sentidos en cada parte del proceso. Además de que sirven para realizar bases de datos donde la búsqueda y almacenamiento sean óptimos.
+\section{INVESTIGACIÓN}
+\subsection{Árbol AVL}
+Un \textbf{árbol AVL} también considerado como un árbol balanceado, es un árbol binario de búsqueda que cumple con la condición de balanceo en que la diferencia entre las alturas de los subárboles de cada uno de sus nodos es, como mucho 1. 
+EL nombre de este tipo de árbol viene de Adelson-Velskii y Landis creador de esta estructura, la principal característica es la de realizar reacomodos o balanceos, después de inserciones o eliminaciones de elementos de tal manera que cumpla con la condición antes dicha siendo a su vez un árbol completamente equilibrado.
+Debido a la condición de balanceo, la complejidad de búsqueda en uno de estos árboles se mantiene siempre en orden de complejidad O(log n).\\\\
+Ejemplo:\\\\
+\begin{figure}[h]
+        \centering
+        \includegraphics{Equipo3Proyecto1EDAII/imagenes/Proyecto1.png}
+        \caption{Ejemplo de Arbol AVL}
+        \label{fig:my_label}
+    \end{figure}{}\\\\
+Retomando la cuestión de la condición de balanceo, por ejemplo, La raíz de cualquier subárbol de un árbol equilibrado tenga como h la altura de la rama izquierda entonces la altura de la rama derecha puede tomar los valores: h-1, h, h+1. Es en este punto donde entra el factor de equilibrio o balance de un nodo, en resumen, se utiliza para averiguar cuándo un subárbol se ha desequilibrado. 
+Este factor de equilibrio se obtiene mediante la resta la altura del subárbol derecho menos la altura del subárbol izquierdo correspondiente. Este factor puede únicamente tomar los valores de 1, -1 o 0 para seguir cumpliendo el balance del árbol. Sin embargo, de no ser así se debe recurrir a lo llamado balanceo para seguir cumpliendo la condición de los árboles AVL. Algo que debemos tener en cuenta es que la altura o profundidad de un árbol binario es el nivel máximo de sus hojas mas una unidad, mientras que la altura de un árbol nulo se considera cero. Dependiendo del resultado, se obtiene tres condiciones: la primera es que el árbol esté equilibrado al obtener 0, la segunda cuando es -1 significa que está desequilibrado a la izquierda y 1, es lo contrario (desequilibrado a la derecha). Es importante recordar que cada nodo corresponde a su respectivo factor de equilibrio.\\\\
+Por ejemplo:\\\\
+\begin{figure}[h]
+        \centering
+        \includegraphics{Equipo3Proyecto1EDAII/imagenes/Fe.png}
+        \caption{Ejemplo para sacar el dactor de equilibrio de cada nodo}
+        \label{fig:my_label}
+    \end{figure}{}\\\\
+Como podemos observar cada nodo se calculó su factor de equilibrio obteniendo los valores permitidos que son 0, 1 o-1. Por otro lado, podemos tener el siguiente ejemplo donde no cumple con lo establecido en este párrafo.\\\\
+\begin{figure}[h]
+        \centering
+        \includegraphics{Equipo3Proyecto1EDAII/imagenes/Fe2.png}
+        \caption{Arbol AVL desequilibrado}
+        \label{fig:my_label}
+    \end{figure}{}\\\\
+\\\\Cada nodo se calcula el factor de equilibrio, pero en el subárbol izquierdo donde se encuentra el nodo 32, podemos observar que no cumple al ser su factor de equilibrio un 2. Por lo que este árbol no es un Árbol AVL. 
+Las operaciones en los árboles AVL corresponden y son similares a las de un árbol binario, algunas de estas son:
+\begin{itemize}
+    \item Insertar
+    \item Eliminar
+    \item Buscar
+\end{itemize}
+Un aspecto fundamental es en las operaciones de insertar y eliminar, ya que se debe mantener el equilibrio del árbol en todo momento, por lo que cuando se incumpla esta condición se debe proceder a un balanceo(reequilibrado) que es modificar el árbol binario para volver a transformarlo en árbol AVL esto se consigue con ayuda de dos operaciones llamadas rotaciones, este proceso se explicará más adelante.\\\\
+
+\textbf{Acerca de la altura de un árbol AVL…}\\\\
+No resulta fácil determinar la altura promedio de un árbol AVL, por lo que se determina la altura en el peor de los casos, es decir, la altura máxima que puede tener un árbol equilibrado con un número de nodos n. La altura es un parámetro importante ya que coincide con el número de iteraciones que se realizan para bajar desde el nodo raíz al nivel más profundo de las hojas. La eficiencia de los algoritmos de búsqueda, inserción y borrado depende de la altura del árbol AVL.\\\\
+\textbf{Balancear (reequilibrar)}\\\\
+Para lograr esta operación se lleva a cabo las rotaciones las cuales se definen como operaciones que modifican la estructura de un árbol ordenado, llevando nodos de un subárbol a otro para resolver así un desequilibrio en altura.
+La rotación a la derecha lleva nodos del subárbol izquierdo al derecho, mientras que la rotación a la izquierda lleva nodos del subárbol derecho al izquierdo.
+\begin{enumerate}
+    \item Inserción\\\\
+    Una inserción de una nueva clave, puede destruir el criterio de equilibrio, por lo que se debe recuperar la condición de equilibrio del árbol antes de finalizar el proceso de inserción y mantener el arbol equilibrado.
+    Se compara la
+nueva clave con la clave del raíz, continúa por la rama izquierda o derecha según sea menor o
+mayor, termina insertándose como nodo hoja. Sin embargo, al insertar puede ocasionar que aumente la altura de una rama,
+de manera que cambie el factor de equilibrio. Por lo que se debe hacer un balanceo después de insertar y verificar que sus factores de equilibrio no sobrepasen los limites establecidos.\\\\
+Ejemplo:\\\\
+\begin{figure}[h]
+        \centering
+        \includegraphics[width=8cm, height=4cm]{Equipo3Proyecto1EDAII/imagenes/proyecto5.jpg}
+        \caption{Ejemplo de la inserción y balanceo en arbol AVL}
+        \label{fig:my_label}
+    \end{figure}
+    \\\\
+    Como podemos observar se inserto el número 6 y debido a eso el árbol entro en desequilibrio polo que se tuvi que hacer un balanceo para obtener el árbol de la segunda imagen.
+    \item Eliminación\\\\
+    Cuando eliminamos un nodo en un árbol AVL puede afectar el equilibrio de los nodos como sucede en la inserción. Por lo que debemos mantener el balance en cada eliminación.
+    Es por eso que en cada recursión se detectan y corrijen errores por medio y se actualiza la altura del nodo actual.
+    La eliminacion es muy parecida a los arboles binarios, y una vez eliminado se tiene que equilibrar el árbol, ppor lo que usamos las rotaciones tambien en estos casos.\\\\
+    Ejemplo:\\\\
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=8cm, height=4cm]{Equipo3Proyecto1EDAII/imagenes/tree13.png}
+        \caption{Ejemplo de la eliminacion de una hoja}
+        \label{fig:my_label}
+    \end{figure}
+\end{enumerate}
+\subsection{Heap}
+Un \textbf{Heap} o también llamado \textbf{Montículo} es un TAD (Tipo de Dato Abstracto) que refiere a un árbol binario completo donde cada nodo es más grande que el valor de sus
+hijos. Esto quiere decir que el nodo raíz es el más grande, lo que también se le conoce como MAX-HEAP. \\\\
+Aunque también puede ser de tipo MIN-HEAP, lo que significaría que, para cada nodo que revisemos, el valor de su "padre" es MENOR, por lo que la raíz sería el valor menor de todos.\\\\
+Lo podemos definir entonces como un \textbf{Árbol binario} que debe cumplir con 2 características:
+\begin{itemize}
+    \item Para cualquier nodo que revisemos, el valor de su "nodo padre" es MAYOR, sin importar el valor de sus nodos hermanos. Siendo la raíz el de mayor valor siempre.
+    \item Es un árbol binario \textbf{completo}, lo que significa que TODOS sus nodos tienen 2 nodos hijos, excepto en el último nivel. En el último nivel las hojas están lo más a la izquierda posible.
+\end{itemize}
+Dado el orden en que se llena el árbol, cada nodo puede numerarse. Si empezamos en 0, al primer nodo, correspondiente a la raíz, le corresponde el número 0. A sus dos hijos les corresponden los números 1 y 2, izquierda y derecha, respectivamente. A los nodos hijos del 2, le corresponden los números 3 y 4, etc.\\\\
+Debido a esto, es posible crear un montículo usando directamente un array, ya que sus propiedades hacen que la posición de cada hijo se pueda calcular fácilmente en una estructura lineal. Esto tiene la ventaja de que no es necesario almacenar los punteros a los nodos hijos.\\\\
+Otra propiedad interesante es que la segunda mitad de los elementos del montículo son nodos hoja, es decir, nodos sin hijos. Dado cualquier montículo con n elementos los n/2 primeros son nodos con hijos, es decir, pueden considerarse montículos, y el resto son nodos hoja. Veremos la importancia de esto cuando tengamos que convertiro un array cualquiera en un montículo.\\\\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=10cm]{Equipo3Proyecto1EDAII/imagenes/MinMax.png}
+    \caption{Ejemplo de un MAX-HEAP y un MIN-HEAP}
+    \label{fig:my_label}
+\end{figure}
+Para los heaps tenemos principalmente 2 operaciones definidas:
+\begin{enumerate}
+    \item Inserción\\
+    Dado que los montículos se llenan por niveles, insertar un valor nuevo implica hacerlo en la última posición, la cual ya habíamos comentado que corresponde a la primero posición libre que este más a la izquierda posible. Aunque, aquí no acaba el proceso, ya que, en general, después de insertar un valor, el montículo habrá perdido la propiedad del orden, de modo que ésta deberá ser restaurada.\\\\
+    Para hacer esto compararemos la clave insertada con la del nodo padre, si no se cumple la propiedad de orden, se intercambian los valores. En un montúculo de máximos, si la clave del nodo hijo es mayor que la del nodo padre, se intercambian. El proceso se repite con el nodo padre, hasta llegar al nodo raíz o hasta que no se produzca un intercambio. Este proceso de verificación se implementa en general como un algoritmo recursivo hacia arriba.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=11cm, height=5cm]{Equipo3Proyecto1EDAII/imagenes/Insertarelemmonticulo.jpg}
+        \caption{Ejemplo de la inserción en un MAX-HEAP}
+        \label{fig:my_label}
+    \end{figure}
+
+    \item Eliminación de la raíz\\
+    Al tratarse de un árbol de orden, la operción correspondiente a la eliminación es para la eliminación de la raíz, la cual corresponde al mayor o al menor valor del árbol. Lo que debemos hacer para este proceso es buscar al último nodo del heap e intercambiarlo con la raíz, para así poder realizar la eliminación del nodo desde una hoja.\\\\
+    Esto también nos va a implicar que el montículo pierda la propiedad de orden, por lo que el proceso no termina aquí, tenemos que recuperarlo.\\\\
+    Para restaurar el orden compararemos la clave actual del nuevo nodo raíz con las de sus dos hijos y si es menor que alguna de ellas (MAX-HEAP), la intercambiaremos con la mayor. El proceso se repite con el nodo hijo cuya clave hemos intercambiado, hasta que lleguemos a un nodo hoja, y se interrumpirá cuando no sea necesario hacer un intercambio.\\\\
+    Aunque, el caso no es así de simple, debido a que cada nodo tiene dos hijos, en caso de que solo uno de sus hijos sea mayor que la raíz, se cambia por este; pero si los dos hijos son mayores, lo que debe pasar es intercambiarse con el mayor de estre sus hijos, y seguir el proceso de manera recursiva hasta llegar a una hoja donde ya no sea necesario, recuperando entonces, la integridad del heap.
+    
+\end{enumerate}
+
+Los montículos están diseñados po ejemplo, para implementar colas con prioridad, sobre todo cuando el tiempo de ejecución es crítico, ya que los tiempos de inserción y borrado son constantes e dependen poco del número de elementos en el montículo.
+También se pueden usar para ordenar arrays, de hecho, son la base del método de ordenamiento heapsort, el cual sabemos ya que es un algoritmo de ordenamiento.
+
+\subsection{Árbol de expresión aritmética}
+A menudo tenemos expresiones aritméticas que desean ser evaluadas en algunos sistemas como calculadoras ya sean físicas o virtuales. Debido a que una computadora no es capaz de diferenciar entre número y operadores, o decidir por sí misma la jerarquía de operaciones se recurre a otras formas de representar dicha expresión para que tenga un orden para esto podemos descomponer la expresión, reordenarla y colocarla de una forma distinta tal como un árbol para posteriormente evaluar dicha expresión usando un árbol de expresión aritmética.\\\
+
+En un árbol binario de expresiones cada nodo contiene la información de un elemento de la expresión (un operando o un operador) y la propia estructura del árbol viene determinada por la forma de la expresión aritmética.\\\
+
+Un árbol de expresión aritmética es un árbol binario colocando a los operandos (números) como las hojas de un árbol binario y los operadores (símbolos o expresiones aritméticas) como los nodos intermedios de un árbol binario.\\\
+
+En los árboles de expresión aritméticas los operadores pueden tener hijos, pero los operandos no, así mismo los nodos solo pueden tener 2 hijos y al agregar nodos, siempre se agrega a la derecha primero, pero, si el nodo derecho se encuentra ocupado , en este caso se agregará del lado izquierdo.\\\
+Tal cómo se describió el árbol de expresiones aritméticas se logra observar que dicho árbol es un tipo especial o particular de un árbol binario. Donde cada nodo hoja contiene un solo operando, de la misma forma un nodo intermedio o no hoja almacena un solo operador binario. Además, cada subárbol izquierdo o derecho de un nodo intermedio (contine a un operador) representa subexpresiones aritméticas que se deben resolver antes de evaluar el nodo raíz el cual contiene a la operación principal de la expresión aritmética.\\\
+
+ Los niveles en un árbol de expresión binaria representan la secuencia y orden de operadores. Los operadores del nivel inferior llamados hojas deben ser evaluados primero, luego los operadores en los niveles superiores (nodos intermedios)  para finalmente llegar a el último operador  del árbol (raíz) para evaluar por completo la expresión.\\\
+ \\\
+ 
+Construcción\\\
+
+\begin{figure}[h]
+        \centering
+        \includegraphics{Equipo3Proyecto1EDAII/imagenes/2.png}
+        \caption{Ejemplo de la inserción y balanceo en arbol AVL}
+        \label{fig:my_label}
+\end{figure}
+\begin{enumerate}
+    \item De la expresión de prefijo e infijo
+    \begin{enumerate}
+        \item Se lee la expresión en prefijo el primer elemento al que se llegué se convertirá en la raíz.
+        \item Se escanea la expresión en su notación infija hasta que se obtiene un elemento. Este se colocará como raíz y todos los demás elementos se colocarán ya sea a la izquierda de él y o a su derecha según sea el caso. Cada lado tendrá una expresión independiente del otro lado, quedando como única unión entre ellas el nodo padre.
+        \item Se repetirán los pasos 1 y 2 hasta que todos los elementos de la notación infija este colocados en al árbol.
+
+    \end{enumerate}
+    \item Expresión infijo y posfijo
+    \begin{enumerate}
+        \item Se leerá la expresión desde su forma postfija, el último elemento se convierte en la raíz.
+        \item Se escaneará la expresión infija hasta que se obtenga el elemento raíz, colocamos todos los elementos que quedan a la izquierda de nuestro actual nodo raíz o a la derecha de él.
+        \item Se repetirán los pasos 1 y 2 hasta que se hayan ingresado en el árbol todos los elementos de la expresión
+    \end{enumerate}
+    \item Desde una en forma postfija\begin{enumerate}
+        \item Se leen los elementos de la expresión en postfijo desde izquierda hasta derecha
+        \item Si es un operando se insertará en una pila y se regresará al paso1.
+        \item Si es un operador se extraerán de la pila los últimos dos nodos y se creara un nuevo nodo con los operandos y el operador. Se adjuntarán los operandos del lado izquierdo o derecho respetando su orden de salida. Finalmente, este nuevo nodo se volverá a almacenar en la lista y se regresará al paso a.
+        \item Se repite hasta que no queden elementos en la pila ni en la expresión aritmética.
+    \end{enumerate}
+\end{enumerate}
+ Notación polaca inversa\\\
+
+Es un método de evaluación de expresiones aritméticas diferente al algebraico. Evalúa los datos desde que se ingresan y los maneja con una estructura LIFO (Last In First Out) que en estructura de datos el más popular es un Stack, esta estructura LIFO optimiza los procesos a la hora de programar.\\\
+Las diferencias con el método algebraico son que, evalúa los datos directamente al introducirlos por lo que, no es necesario ordenar la evaluación de los mismos, y que, para ejecutar un comando, primero se deben introducir todos sus argumentos.\\\
+Los cálculos se realizan secuencialmente según se van introduciendo operadores, en vez de tener que esperar a escribir la expresión al completo. Debido a esto, se cometen menos errores al procesar cálculos complejos.\\\
+El proceso de apilación permite guardar resultados intermedios para un uso posterior. 
+No requiere paréntesis ni reglas de preferencia, al contrario que la notación algebraica, ya que el proceso de apilamiento permite calcular la expresión por etapas.\\\
+
+Pasos\
+\begin{enumerate}
+    \item Añadir un paréntesis derecho “)” al final de P.
+    \item Examinar P de izquierda a derecha, y repetir los pasos 3 y 4
+    \item Si se encuentra un operando, agregarlo al stack
+    \item Si se encuentra un operador entonces:
+    \begin{enumerate}
+        \item . Sacar los dos operadores superiores del stack, donde A es el elemento superior y B el siguiente elemento superior en el stack.
+        \item realizar la operación encontrada con "A" y "B" (evaluar la expresión)
+        \item Agregar el resultado al stack
+    \end{enumerate}
+    \item Terminados las repeticiones anteriores solo se asignará como resultado al elemento superior del Stack.
+\end{enumerate}
+
+
+\section{IMPLEMENTACIÓN}
+Para implementar nuestro programa de manejo para \textbf{árboles binarios} en lenguaje \textit{Java}, lo primero que se realizó f creación de nuestro proyecto y una clase principal, en donde vamos a tener el código correspondiente al menú principal de usuario. En nuestro menú de usuario colocamos 4 posibles opciones entre las cuales el usuario puede navegar, dichas opciones corresponden a:
+\begin{enumerate}
+    \item Árbol AVL
+    \item Heap
+    \item Árbol de Expresión Aritmética
+    \item Opción de salida
+\end{enumerate}
+Cada uno de estos casos tiene, a su vez, sus instrucciones correspondientes para la implementación de sub-menús, en donde el usuario pueda escoger entre las diferentes operaciones que se pueden realizar con cada árbol distinto. A continuación, se explica la manera de implementación para cada árbol binario, incluyendo sus respectivas operaciones y ejecuciones en nuestro programa.
+\subsection{Árbol AVL}
+Para la implementación de los árboles AVL, en el proyecto podemos encontrar las tres operaciones que se usaron para este tipo de arbol.
+\begin{enumerate}
+    \item Crear un arbol
+    \item Agregar clave
+    \item Buscar un valor
+    \item Eliminar clave
+    \item Mostrar arbol
+\end{enumerate}
+Para la realización de estas operaciones comenzamos describiendo la clase del NodAVL, es muy similar al nodo que estuvimos trabajando de arboles binarios con la diferencia que se encuentra el nivel de cada uno de ellos para poder obtener el factor de equilibrio y por consiguiente poder balancear el árbol. Y lo que sigue son sus respectivos constructores, getter y setter creados automaticamente usando las herramientas de netBeans. Uno en especial es el constructor del nodo que inicializa la altura de un nodo como 1, para poder hacer uso del factor de equilibrio.\\\
+\begin{figure}[h]
+        \centering
+        \includegraphics{Equipo3Proyecto1EDAII/imagenes/nodo.png}
+        \caption{Constructor de nodo}
+        \label{fig:my_label}
+\end{figure}
+Para la clase de ArbolAVL nos apoyamos de la clase de Árbol binario, haciendo uso de la heredación para poder usar algunas de las funciones si es que las requerimos. Iniciando en esta clase tenemos lo que son los constructores del árbol, posteriormente empiezan los métodos para el árbol. En primera es el método de altura la cual sirve para dar los niveles de altura de los nodos y evitar errores a la hora de la ejecución si es que nos encontramos con un nodo nulo, por lo que se devolvería un 0.
+En el siguiente se encuentra el método para rotar a la derecha, recibe la raíz del subárbol a rotar y lo que hace es tomar como la nueva raíz el hijo izquierdo de tal manera que no se pierda el balance y el orden de los nodos.
+El siguiente es el método de rotación a la izquierda, donde es igual que el anterior solo que al revés. Ahora la nueva raíz va a ser del hijo izquierdo.\\\
+Como siguiente método tenemos el de agregar un nodo al árbol binario, como parámetros que recibe se encuentra por el valor que agregaremos y el nodo raíz, posteriormente se crea el nodo que llevará el valor del nodo a agregar. Primero se verifica que no se trate de un árbol vacío, esto solo al inicio, posteriormente al ser un árbol de nodos ordenados, es más fácil sabes guiarse hacía que subárbol izquierdo hay que ir para encontrar el nodo padre del nuevo nodo. Esta forma es de tipo recursiva por lo que acaba hasta llegar a un nodo nulo lo que significará que es donde se almacenará el nodo. Posteriormente al ser este método de tipo recursivo es que va actualizando a cada nodo superior de donde se insertó como es el cambiar la altura del nodo padre, así como determinar cada factor de equilibrio y en base a eso ocupar los 4 casos que pueden ocurrir.
+El primer caso es la rotación a la izquierda donde el subárbol derecho es superior, el segundo caso es el subárbol izquierdo supere por más de una unidad al derecho por lo que se hace una rotación a la derecha. También puede existir las dos posibilidades donde se necesiten dobles rotaciones, la penúltima es primero a la derecha y luego a la izquierda, y en la otra los lados contrarios. Y esta función es de tipo nodo, que va regresando los nodos hasta llegar a la raíz.
+En el método anterior se mencionó el factor de equilibrio, por lo que su método es recibir un nodo y si este es null regresa un 0 , además de acuerdo a las fuentes consultadas el factor de equilibrio se obtiene restando la altura del hijo derecho con el del hijo izquierdo. \\\
+Para el siguiente método es para buscar el nodo y saber si está o no en el árbol, al ser un árbol AVL, sabemos que es un árbol ordenado por lo que resulta más sencillo el buscar, ya que podemos irnos dirigiendo desde la raíz siendo una ruta menos larga a comparación si fuéramos uno por uno. Así que este método solo señala si está el nodo. Para el siguiente es el que busca un nodo Padre, es identico al anterior solo que en vez de parar cuando encuentra el nodo, lo hace cuando detecta que son sus respectivos nodo Hijos.
+Para eliminar fue una tarea complicada ya que no solo era eliminar el nodo como lo hacíamos en los árboles binarios y/o de búsqueda, sino que teníamos que mantener el equilibrio y el orden del árbol. Sin embargo la idea era eliminar el nodo mediante la función que ya teníamos de arboles binarios de búsqueda y mediante una función de balance acomodar los nodos superiores de donde se elimino hasta llegar a la raíz. Pero esto solo fue posible cuando se eliminaba hojas y estas no provocaban un desequilibrio al árbol, ya que al intentar en más casos no fue posible ya que daba un resultado que no era un árbol AVL.\\\
+Finalmente se modificó la función quer muestra en pantalla al árbol, ya que anteriormente era una lista de los valores de los nodos y tenías que interpretar su posición. Lo que se cambió fue con ayuda de el atributo que nos daba la altura podíamos determinar la altura del árbol al usar la raíz y en base a eso saber cuando parar el ciclo while para así la pila cuando pase por un nodo que sea nulo imprima una diagonal para poder visualizarlo mejor en pantalla y saber en que nivel se encuentran los nodos y dónde.
+\begin{figure}[h]
+        \centering
+        \includegraphics{Equipo3Proyecto1EDAII/imagenes/Imagen7.png}
+        \caption{Impresion de pantalla del arbol AVL}
+        \label{fig:my_label}
+\end{figure}
+
+
+\subsection{Heap}
+Para implementar un\textbf{heap} o \textbf{montículo}, nos vamos al caso correspondiente en nuestro menú principal, en donde comenzaremos la implementación del sub-menú que tendrá las opciones de operaciones:
+\begin{enumerate}
+    \item Crear un heap
+    \item Agregar clave
+    \item Eliminar raíz
+    \item Mostrar heap
+    \item Salir
+\end{enumerate}
+Teniendo nuestro sub-menú, para poder implementar las operaciones que queremos, comenzamos con la creación de 2 clases nuevas, una llamada \textit{Nodo} y otra \textit{Heap}, las cuales nos van a permitir manipular nuestra estructura.\\\\
+En la clase \textit{Nodo} lo que tenemos es la creación y desarrollo de un objeto tipo \textit{Nodo}, el cual tiene como atributos:
+\begin{itemize}
+    \item valor
+    \item izquierdo
+    \item derecho
+    \item padre
+\end{itemize}
+Los cuales nos van a permitir la manipulación de objetos de este tipo en nuestras estructuras \textbf{heap}. Continuamos con los contructores para la correcta instancia de los objetos, y una serie de \textit{getters} y \textit{setters} para cada atributo de nuestra clase. Terminando con el \textit{toString}, el cual sabemos que nos permite ´recopilar un nodo por completo, con todos sus atributos.\\\\
+Teniendo entonces la clase que nos va a permitir crear y manipular lo que serían los nodos de nuestro heap, lo siguiente es crear esta última estructura. Creamos una nueva clase llama\textit{Heap}, en donde el único atributo será la raíz, ya que los demás nodos estarán conectados entre sí a partir de ella, y podremos manipular nuestro heap igualmente desde la raíz.\\\\
+Seguimos con la inserción de 3 constructores para poder instanciar un heap, pasandole un valor para su atributo raíz, o el nodo raíz completo de manera directa.Y una vez teniendo nuestro heap (definición de la raíz) y los nodos, lo siguiente es crear los métodos en donde los utilizaremos para implementar las distintas operaciones solicitadas.\\\\
+Comenzamos con la creación de un método \textbf{addNodoH} (dentro de la clase Heap), el cual nos va a permitir agregar un nodo a nuestro heap de forma correcta. Para comenzar recibe como parámetro al nodo que vamos a agregar, y a partir de la raíz, hace un recorrido al heap de forma BFS, en busca de la primera posición disponible lo más a la izquierda posible, para ello evalúa en cada nodo (a partir de la raíz) si su hijo izquierdo es null, en caso de ser así, lo asigna ahí, si no es null, lo agregamos a una queue y pasamos a la misma evaluación pero para el hijo derecho del nodo.\\\\
+Una vez que nuestro nodo fue agregado al heap en la primera posición disponible, lo que tenemos es la implementación de un ciclo\textit{while}, el cual nos va a permitir evaluar, a partir del nodo que acabamos de agregar, si su nodo padre es menor a él, en cuyo caso amerita un intercambio de valores, esto se hace de manera recursiva hacia arriba y hasta llegar a la raíz (si es ell caso), con ayuda de un nodo auxiliar que es actualizado en cada intercambio. Esto último es para poder conservar la integridad de nuestro MAX-HEAP.\\\\
+Continuamos con un método para la operación de eliminación para la raíz del heap, para ello creamos entonces el método \textbf{eliminarH}, el cual no recibe parámetros, ya el nodo que vamos a eliminar es la raíz, aunque para ello necesitamos primero encontrar el último nodo del heap y así poder intercambiarlos, para ello primero se va a realizar un recorrido BFS, ya que, al finalizar el recorrido, nuestro nodo auxiliar va a estar posicionado en el último nodo. Y una vez teniendo esto, procedemos a realizar el intercambio entre este último nodo y la raíz; no sin antes evalúar que estos nodos sean diferentes, ya que, si resulta que el heap solo tiene un nodo (correspondiente a la misma raíz) no lo podemos intercambiar y se elimina directamente, eliminando así el heap por completo; en caso de que sí se trate de nodos distintos, lo que hacemos es cambiar el nodo de la raíz por el nodo de este último nodo (el proceso contrario ya no se hace porque de todos modos se va a eliminar el nodo), y para eliminar el último nodo primero debemos de encontrar al nodo padre y eliminar su conexión con él (evaluando si se trata de su hijo izquierdo o derecho), eliminando así al nodo por completo.\\\\
+Teniendo ya al nodo eliminado, debemos realizar el último paso de la operación, el cual corresponde a la verificación de la nueva raíz, para comprobar que se cumpla la integridad del \textbf{heap}, es decir, para realizar los intercambios necesarios de manera que el heap se vuelva a ordenar como un MAX-HEAP. Para esto, invocamos a una función recursiva que va a revisar los posibles casos que se nos podrían presentar cada cada nodo que se vaya revisando.\\\\
+Esta función recursiva recibe el nodo que vamos a analizar, y para comenzar se hace verifica que exista un nodo izquierdo (solo el izquierdo porque al construirse como un heap, de izq->der, si no existe un nodo izquierdo, tampoco un derecho), en caso de que no, no hay nada que verificar, pero si sí hay más nodos en el heap, pasamos a la siguiente, que es para verificar si, además de que existe un nodo izquierdo, TAMBIÉN existe uno derecho (y si su valor es mayor que la raíz), ya que, si NO es así, solo tendríamos que comparar si el valor del nodo izquierdo es mayor a la raíz, realizar los intercambios (si es necesario) y realizar una llamada recursiva más para el nodo izquierdo que se acaba de intercambiar. En el caso de que SI exista un nodo derecho Y ADEMÁS su valor sea mayor a la raíz, lo que se va a hacer es una verificación más para comparar cual de los dos hijos es el MAYOR, y a partir de ahí, poder realizar el intercambio con éste, además de la siguiente llamada recursiva después del intercambio. De este modo la recursividad por cada nodo va a seguir hasta que no haya más nodos que verificar, y terminando entonces con el heap re-acomodado de manera correcta.\\
+
+El siguiente método que tenemos en nuestra clase \textbf{Heap} es \textbf{mostrarH}, el cual lo que busca es recorrer e imprimir nuestro heap, de una forma más gráfica que el recorrido BFS que hemos trabajado anteriormente. Para esto, SI recorremos primero el heap de manera BFS, pero solamente para ir agregando los valores de cada nodo (en orden) a un ArrayList. Una vez que se acaba de recorrer el heap, tendremos nuestro arreglo lleno de los valores correspondientes a los nodos ordenados del heap. Y después de un análisis y varios intentos de implementación, lo que se realiza después es imprimir el primer valor del arreglo (correspondiente al valor de la raíz del heap), ya que es la posición 0, para después poder implementar un ciclo \textit{while} que nos ayude a imprimir el resto de los nodos del heap, POR NIVELES. Para esto vamos a ir imprimiendo todo el arreglo (iniciando en la posición 1 y hasta terminar), pero haciendo los saltos de linea según los nodos correspondientes a cada nivel, para poder evaluar los nodos de cada nivel (que van aumentando), se siguió la siguiente lógica de la Figura 10.\\\\
+
+Entonces, nuestro ciclo se va a repetir hasta que el contador supere un índice válido del arreglo (ya que si no hay valores, ya no hay más que imprimir), se verifica que para cada posición exista algo en el arreglo y se imprime, para después ACTUALIZAR el contador una posición más y volver a evaluar, pero no sin antes verificar la parte que nos va a dar los saltos de línea, la cual es un \textit{if} que nos dice que si el contador vale lo mismo que una variable "a" (que esta inicializada en 2 porque ahí va el primer salto), se imprime un salto de línea y se actualiza "a" con nuestra fórmula $a=(a*2)+2$. Esto nos va a permitir imprimir el heap por niveles y de izquierda a derecha, hasta donde haya nodos.
+
+Para implementar las opciónes correspondientes de nuestro sub-menú en la clase \textit{main}, lo primero que se hace antes de evaluar cualquiera de las operaciones es instanciar un Heap, para que así, podamos usarlo y modificarlos para todas las opciones del sub-menú. Y ya ahora sí podemos empezar con el case 1, correspondiente a crear un heap, esto solo se podrá realizar si no hay uno en existencia, y para crearlo se solicita al usuario el valor que quiere para el nodo raíz, se creará un nodo y se le pasara dentro del contructor para \textbf{Heap}, instanciandolo de esta manera.\\\\
+Para el case 2, correspondiente a agregar nodo, lo que se hace desde el sub-menú es pedir la cantidad de nodos que se quieren agregar, y con ello se implementa un ciclo for, que creer cada nodo e invoque al método \textbf{addNodoH} para cada uno de ellos.\\\\
+El case 3 corresponde a la eliminación de la raíz, y para este caso lo único que se hace es indicar en pantalla el valor de la raíz que se elimina, e invocar al método \textbf{eliminarH}, para que internamente realice el proceso, y terminar invocando al método que muestra el heap, para que así el usuario puede observar cómo quedó el heap después de la eliminación y el re-acomodo.\\\\
+El case 4 corresponde a la opción de mostrar el heap, y para esto únicamente invocamos para el heap, al método \textbf{mostrarH}. Acamando con el case 5, que solo es la salida, en donde actualizamos a la varieble booleana que nos permite seguir entrando al sub-menú, para así regresar al menú principal.
+\begin{figure}[h]
+        \centering
+        \includegraphics[width=9cm, height=6cm]{Equipo3Proyecto1EDAII/imagenes/niveles.jpg}
+        \caption{Lógica para el salto de línea por niveles}
+        \label{fig:my_label}
+\end{figure}
+
+\subsection{Árbol de expresión aritmética}
+La implementación de este tipo de árboles involucra tres clases: la principal, NodoAET y AETree.\\\
+Clase NodoAET\\\
+La clase NodoAET fue creada debido a que un árbol de expresiones aritméticas tiene un cambio significativo respecto al resto de arboles el cual fue que a diferencia de un Heap o un árbol AVL los arboles de expresiones aritméticas tienen como valor de cada nodo un String ya que no solo se desea almacenar números en cada nodo, si no que también se desea almacenar carácteres que representan operaciones.  \\\
+Un NodoAET tiene como atributos a un String llamado value el cuál representa el valor de dicho nodo, también tiene un NodoAET llamado izquierdo y un NodoAEt llamado derecho (ya que al ser un árbol binario posee la característica de tener solo dos nodos hijo )\\\
+
+Posee un  constructor que le asignará a izq y der el valor de null. Otro que recibirá un valor de tipo String y se le asignará a value mientras que izq y der serán inicializados con null. El último constructor recibirá un valor de tipo String para value, y a diferencia de los anteriores también recibe dos nodos de tipo NodoAET los cuales serán asignados a izq y der respectivamente.\\\
+Esta clase tiene además un método llamado getValue  el cuál no recibe parámetros pero si retorna un valor de tipo String. Este método obtendrá y retornara el valor del atributo value de un NodoAET.\\\
+El último método dentro de esta clase es setValue el cuál recibe como parámetros un valor de tipo String y no devuelve valores,  este método modificara el valor del atributo value de un NodoAET \\\
+
+Clase AETree\\\
+Está clase representa a un árbol de expresiones Aritméticas conformado por nodos de tipo NodoAET. Un AETree tiene como atributos a un Nodo de tipo AET público, también tiene a un arreglo de caracteres private final llamado operadores dentro del cuál se encuentran los símbolos de todas las operaciones soportadas por el programa; el último atributo presente es un Stack private de doubles llamado números, acá se almacenarán todo los número y resultados de cada operación para finalmente quedar el resultado dentro.\\\
+
+Existe un único constructor vació (asigna a todo null ) ya que por la forma de implementar un árbol de expresiones aritméticas no se manipulan los demás atributos hasta que se este creando la expresión.\\\
+ El primer método que nos encontramos es addExpression el cuál como su nombre lo indica agregará la expresión al árbol; este método no devuelve valores pero si recibe como parámetro a un String el cuál representa a la expresión a evaluar. Dentro de este método se declara una LinkedList de String  llamada exp que contendrá a los operadores, signos de agrupación y número separados, a exp se le asignó la lista devuelta por el método toArray  al cuál se le mandó la expresión en un arreglo; es importante mencionar que se uso otro método para pasar el string a un arreglo ya que los numero como decimales, decenas, centenas entre otros eran separados en caracteres, con el uso del método toArray se logró unir los números. El siguiente  elemento declarado es un Stack de NodoAET llamado operandos, y el último elemento declarado es otro Stack pero esta vez de Strings el cuál se llama operador.\\\
+ En este método justo después de las declaraciones se ejecuta un ciclo for mientras que se ejecutara mientras el contador "i" sea menor al tamaño de exp. Dentro se evalúa que el elemento en exp en la posición dada ´por i se un cierre de paréntesis, si es correcto entonces se agregará a operandos un nuevo nodo al que se  le enviará como valor el string obtenido de operador ,  y además los dos nodos superiores del stack operandos. Si no se cumplió la condición mencionada previamente entonces se evaluará que el string en exp sea un operador esto a través de llamar al método searchOp al cual se le envía el carácter a evaluar, si es correcto entonces  en el stack de operador se agrega este string , de lo contrario se evalúa que no se un inicio de paréntesis si es correcto entonces se agrega este string al stack de operandos. Finalmente fuera del ciclo for a root (la raíz del árbol) se le asigna el único nodo en el stack de operandos que corresponde al árbol de expresión aritmética ya creado.\\\
+El siguiente método es resolver el cuál recibe un NodoAET llamado r el cual representa a la raíz de cada subárbol, ya que esta función es recursiva, devolverá un double que contiene el resultado de cada subárbol y finalmente el resultado. Dentro con un if se evalúa que el nodo izquierdo de r no sea null si es correcto entonces al stack números se le añadirá el valor devuelto por llamar a resolver pero ahora dando le el nodo izquierdo de r, esto mismo se realizará para el nodo derecho (estas recursividades se detendrá hasta que se llegue al último nodo hoja), después con un if se evalúa el valor de r sea un carácter si es cierto entonces se sacarán los dos números superiores del stack números y se le asignara a las variables de tipo double aux1 y aux2 respectivamente, usando al valor de r se ejecutará un switch donde cada caso corresponde a una operación, el primero sa la suma, el segundo a la resta, el tercero a la división y el cuarto a la multiplicación, en todas las operaciones se mantiene el orden de aux1 y después aux2 ya que por la forma de crear el árbol no es necesario un cambio de posiciones para cada operación, a demás se considero no colocar un if para el caso de la división entre cero ya que al ser de tipo double devuelve infinity lo cuál consideramos que podría de ser útil para el usuario, en cada caso además de realizar la operación correspondiente se añade el resultado al stack números. Sin embargo si se dio el caso de que el string evaluado no fue un operador entonces a números se le añade el valor convertido a double del valor de r. Finalmente se retornara el ultimo valor encontrado en el stack numeros.\\\
+
+El siguiente método es mostrar este método mostrará el árbol de forma vertical para observar cuando falte valores de ambos lado de árbol,  es recursivo y esta basado en el recorrido inFijo de un árbol binario de búsqueda, recibe un NodoAET llamado raíz y un entero llamado profundidad que representa cuantos nodos se tuvieron que recorrer para llegar al nodo que queremos imprimir. Dentro se declara un nuevo NodoAET  llamado r y se le asigna el nodo raíz, con un if se evalúa que el nodo izquierdo de r no sea null si es correcto entonces se llama a mostrar y ahora se le envía el nodo izquierdo de r y a profundidad mas 1 (se le sumo un 1 ya que bajó un nivel en el árbol) enseguida con un for que se repetirá mientras el contador i sea menor a profundidad se imprimirán saltos de línea una vez espaciados los niveles de profundidad del nodo se procederá a mostrar el valor de r, finalmente se realizará exactamente lo mismo pero ahora para el lado derecho del árbol.\\\
+
+El siguiente método es searchOp este método es privado ya que únicamente el AETree y sus métodos podrán acceder a el, es de tipo boolean para saber si un carácter se encuentra dentro de los operadores aceptados por el árbol, devolverá true si efectivamente se encuentra o false en caso contrario, también recibe unString el cuál es el valor a comparar. Dentro se ejecuta un ciclo for mientras existan valores sin revisar en el atributo operadores, cada operador será guardado e una variable de tipo char llamado carácter,  y se evaluara el el valor en string de carácter sea igual al pasado como parámetro si es correcto entonces retornara true.\\\
+El último método es toArray, recibe un arreglo de  caracteres llamado charArray y devolverá una lista ligada de Strings, dentro se declara una nueva lista ligada de strings llamada expresión, y una variable de tipo String llamada aux. enseguida se ejecuta un ciclo for mientras el valor del contador "i" sea menor al tamaño del arreglo, dentro con un if se evalúa que el carácter de charArray en la posición de i sea un inicio de paréntesis, un final de paréntesis o un operador, si es cierto entonces solo se agregará este carácter a expresión, de lo contrario (es un número) se le asignará a aux dicho carácter, a al contador i se le sumará uno y con un while que se repetirá mientras el carácter en charArray en la posición de i sea 0,1,2,3,4,5,6,7,8, 9 o un punto, dentro de este while se concatenara el numero existente en aux más el carácter en la posición i de charArray, fuera de este ciclo a i se le restará uno y se agregara la variable aux a expresiones. fuera del ciclo for se retornará expresiones.\\\
+
+La clase principal se encuentran tres casos y un default. El caso correspondiente al Árbol de expresiones aritméticas es el tercero, lo primero que se hace en este caso es instanciar un AETree , para que así, podamos usarlo y modificarlos para todas las opciones del sub-menú. enseguida se muestra el menú el cual contiene  las opciones de añadir una expresión, mostrar el árbol o resolver la expresión, enseguida se ejecuta un switch con la opción del usuario, si se elige el caso 1 entonces se le mostrará al usuario la forma correcta de escribir su expresión aritmética, después se le pide dar la suya y se le envía al método addExpression de árbol, después se llama al método mostrar al cual se le envía la raíz del árbol y cero, todo lo anterior esta rodeado por un try-catch ya que se podría dar el caso de que usuario no ingresará o colocará correctamente los paréntesis. Si se elige el caso dos entonces con un if evaluaremos que la raíz del árbol no sea null ya que el usuario podría intentar imprimir un árbol vacío, si se la condición  entonces se llama al método mostrar del árbol y se le envía el nodo raíz y cero.  Si se elige el tercer caso entonces también se evaluara que el árbol no este vació y si cumple entonces se imprimirá el valor devuelto de llamar al método resolver del árbol al cual se le manda el nodo raíz del árbol.
+\section{DOCUMENTACIÓN}
+\subsection{Javadoc}
+Pagina\\\
+\href{https://cristinakris.github.io/Proyecto1-EDAII-Equipo3/}{Hypervínculo a javadocs}\\\
+Repositorio\\\
+\href{https://github.com/cristinaKris/Proyecto1-EDAII-Equipo3}{Hypervinculo al Repositorio}
+   
+   
+\subsection{Calendario}
+Se encuentra en el Drive, como un pdf.
+
+\section{CONCLUSIONES}
+Castillo Soto Jacqueline\\
+Para este proyecto logramos conocer otras implementaciones de arboles de algunos ya conocidos como el heap y expresión aritmética a otras nuevas implementaciones como fueron los árboles AVL. Sin embargo el hecho de implementarlas en los árboles binarios y en código fue una manera diferente y de manera que podamos entender mejor el uso de estos y sus respectivas operaciones. Además de las aplicaciones que estuvimos creando a lo largo del diseño de los códigos, pudimos completar y aportar varias ideas para la creaciones tanto del menu como las diferentes opciones que cuenta el programa logrando una buena interacción y desarrollar el trabajo en equipo esperado. También al estar trabajando en netBeans y el lenguaje de programación que es java, pudimos desarrollar, reforzar y poner en práctica los conceptos que hemos estado aprendiendo acerca de la programación orientada a objetos.\\\\
+Gracias a las investigaciones realizadas al inicio del documento es como logramos comprender la parte teórica así como visualizar varios ejemplos de las diferente operaciones de cada uno de los árboles y de esta manera obtener un entendimiento y avance para el momento en que debíamos cambiar y comenzar a diseñarlas. El hecho de estar investigando y a su vez conociendo los pasos necesarios para cada una de las operaciones. Otro dado importante es que vamos conociendo las distintas propiedades de cada uno, como es en los árboles AVL donde al ser equilibrados, sus subárboles deben diferir en 1 unidad de lo contrario ocurre el proceso de balanceo, o las formas en que vamos eliminando los Heaps al solo tomar en cuenta la raíz e incluso los árboles de expresión aritmética donde en base a ciertos signos y número es cómo regresa y hace ciertas operaciones para así obtener el resultado.\\\\
+Finalmente a lo largo de este proyecto pudimos tanto adquirir como entender el funcionamiento de los tres tipos de árboles así como el poder experimentar y estar desarrollando sus distintas operaciones en un lenguaje de programación orientada objetos por lo que nos adentramos más a este mismo lenguaje y comenzando a conocer los distintos métodos que podemos usar para una distinta implementación a como lo hacíamos en el lenguaje c al igual que una diferente escritura a lo que estabamos acostumbradas al estar usando Latex.
+
+Figueroa Ruiz Carolina\\
+Durante la realización de este proyecto, ya más completo en muchos aspectos, logramos implementar otros tipos de árboles binarios diferentes a los que estudiamos durante clase, teniendo que analizar no solo su estructura, sino también la forma en que cada uno trabaja, realizando mínimos operaciones básicas de inserción y eliminación. Esto resultó claro, mucho menos pesado al tratarse de un trabajo en equipo, logrando tener diferentes puntos de vista y logrando complementar información para implementar cada árbol solicitado.\\\\
+Verificamos, que, a pesar de que los tres son árboles binarios, su implementación, estructura y utilidades son diferentes, cada uno necesitó de un tipo diferente de nodo, de métodos únicos y hasta de un algoritmo de impresión diferente. Lo cual hizo que nos tomara más tiempo cada implementación, pero también que para este punto sepamos manejar bien tres árboles más.\\\\
+Durante el desarrollo de proyecto, también se fueron presentando algunos inconvenientes, en mi caso, la impresión del heap de una manera más gráfica, el tener que entender por completo el funcionamiento de un heap, y su forma de trabajar, para poder crear algoritmos ajustados a sus características (que no siempre funcionaban), pero que al trabajar como equipo eran más fáciles de resolver, ya que siempre había cosas que se nos pasaban a cualquiera de nosotras, y que otra persona lo vea con otra perspectiva ayudó bastante. Además de que, el trabajo en equipo fue exitoso, a pesar de que nos repartimos cada uno de los árboles, iniciamos el proyecto todas juntas, a partir de una misma base, y cada cierto tiempo fuimos juntando los avances que teníamos, además de que, cada una le explicó a las demás el funcionamiento de su árbol, para así poder ayudar todas en las ideas de implementación de métodos y resolución de errores.\\\\
+Otra cosa nueva que implementamos durante este proyecto, fue el uso de \LaTeX \\como procesador de texto, al principio nos asustamos un poco sobre lo diferente que es, los comandos que ocupamos para poder redactar, etc. pero al final entendimos las grandes ventajas de su uso, las cuales considero que van más allá de un diseño, se tratan más de estructura, al estar como a manera de "código", el modificarlo en cualquier aspecto resultó increíblemente sencillo y práctico, además de que se puede trabajar como un documento compartido. Aún así batallamos con algunas cosas, por ejemplo, con las imágenes, el hecho de que se acomoden donde mejor se acomoden, o a veces no se puedan ajustar como se desea, nos tomó mucho tiempo, también hubo veces donde, al compilar, nos marcaba errores que no sabíamos donde estaban, y eso nos retrasaba un poco, sin embargo, creo que esto es debido a que nos falta práctica, y esperamos que en los siguientes proyectos, mejore este aspecto también. \\\\
+
+Isidro Castro Karen Cristina\\
+En este proyecto logramos aprender y reafirmar nuestros conocimientos previamente vistos sobre árboles, como lo fueron principalmente los árboles binarios y los árboles binarios de búsqueda, logramos implementar nuevos tipos de árboles que solo conocíamos por teoría e incluso algunos no conocíamos de las clases teóricas, logramos analizar su estructura,atributos y métodos, de dónde logramos concluir que los arboles binarios son muy importantes ya que en mayor o menor medida fueron usados para los árboles estudiados en este proyecto, ya sea directamente heredando de la clase como fue el caso de los árboles AVL o en menor medida como en los árboles de expresiones aritméticas donde usamos principalmente su recorrido inOrden para mostrar el árbol o postOrden como base para la notación polaca inversa y así evaluar nuestra expresión aritmética. En mayor medida es interesante observar como además de usar sus métodos se uso la estructura de un árbol binario ya que todos los arboles poseen un nodo raíz y cada nodo de este árbol poseerá dos hijos o dos subárboles.\\\
+
+En está practica logramos conocer como existen tantos tipos de árboles con características tan distintas, desde su forma de ingresar datos, ser construidos, recorridos, si permiten la eliminación de elementos o la inserción de elementos unitarios, la búsqueda entre otros, y a pesar de todas sus diferencias todos los nodos vistos en este proyecto tenían cosas en común o en su defecto muy parecidas. También logramos observar algunas de sus aplicaciones ya sea realizándolas como en el árbol de expresión aritméticas o al investigar conocer sobre todas su aplicaciones y como esta estructura moldea muchas cosas que usamos a diario en nuestros dispositivos ya sea desde un calculadora hasta un computadora con los gestores de archivos.\\\
+
+El trabajo en equipo fue de mucha ayuda, a pesar de que hubo ocasiones en que presentamos dificultad para sincronizarnos, o llegar a acuerdos en común respecto al diseño o la planeación debido a nuestras distintas formas de percibir la tarea encomendada fueron mínimos, y en cambio fue mucho lo que aprendimos por una parte a través de investigar y por otra gracias a los conocimientos que cada una tenía sobre los temas, la forma de programar o actividades extra. Logramos complementarnos muy bien ya que si en algún punto nos deteníamos a alguien se le ocurría una forma muy interesante de resolver el problema, y al unir todas las ideas se lograron crear una contemplación mucho más increíble del problema ya que en momento logramos observar como se volvía mucho mas simple, trabajar juntas logro que obtuviéramos un entendimiento demasiado expansivo y maravilloso.\\\
+
+\section{REFERENCIAS}
+Joyanes,L.,Sanchez,L., & Zahonero, I.(2007).ESTRUCTURA DE DATOS EN C++.McGRAW-HILL/INTERAMERICANA.\\\\
+Árboles. Árboles Binarios. https://www6.uniovi.es/usr/cesar/Uned/EDA/Apuntes/\\TAD_apUM_04.pdf\\\\
+Sánchez, J(2013). Estructuras de Datos. https://www.escom.ipn.mx/docs/oferta/\\matDidacticoISC2009/EDts/Libro_EstructuraDatos.pdf\\\\
+https://conclase.net/c/edd/cap10\\\\
+Adrián, E. Estructura de Datos. Instituto Politécnico Nacional. https://docencia\\.eafranco.com/materiales/estructurasdedatos/13/Tema13.pdf\\\\
+Gurin, S.(2004).Árboles AVL.http://es.tldp.org/Tutoriales/doc-programacion-arboles-avl/avl-trees.pdf\\\\
+Hernandez, Miguel.(2021).Estructuras de datos. Fundamentación práctica.\\Ediciones de la U.\\\
+Niqui, M. (2007). Exact arithmetic on the Stern–Brocot tree. Journal of Discrete Algorithms, 5(2), 356-379.\\\
+\end{document}
